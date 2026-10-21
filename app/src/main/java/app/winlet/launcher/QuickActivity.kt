@@ -120,6 +120,11 @@ fun QuickPanel(done: () -> Unit) {
                 Tile(Icons.Default.Settings, "Settings", false) { go(Intent(Settings.ACTION_SETTINGS)) }
             }
             Spacer(Modifier.height(14.dp))
+            MenuRow(Icons.Default.Build, "Setup & requirements") {
+                Session.forceSetup.value = true
+                ctx.startActivity(Intent(ctx, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                done()
+            }
             MenuRow(Icons.Default.ClearAll, "Close all apps") { Session.closeAll(ctx); done() }
         }
     }
